@@ -24,7 +24,7 @@ M201 X2500.00 Y2500.00 Z200.00 E5000.00               ; set accelerations (mm/s^
 M906 X800 Y1600 Z600 E1000 I50                        ; DEBUG Low set motor currents (mA) and motor idle factor in per cent
 M84 S30                                               ; Set idle timeout
 
-; From cheeseandham on Railcore Discord, June 20, 2020
+; From cheeseandham on Railcore Discord, June 20, 2020 (for reference)
 ; M201 X4000 Y4000 Z100 E1500       ; Accelerations (mm/s^2)
 ; M203 X24000 Y24000 Z800 E3600     ; Maximum speeds (mm/min)
 ; M566 X1000 Y1000 Z100 E1500       ; Maximum jerk speeds mm/minute
@@ -37,6 +37,10 @@ M208 X255 Y212.5 Z210 S0                              ; set axis maxima
 M574 X1 S3                                            ; configure sensorless endstop for low end on X
 M574 Y1 S3                                            ; configure sensorless endstop for low end on Y
 M574 Z2 S3                                            ; configure sensorless endstop for high end on Z
+
+;Leadscrew locations
+M671 X-38.5:291.5 S7.5                                ; Define leadscrew locations (not sure if I can omit Y)
+; M671 X-38.5:291.5 Y105:105 S7.5                     ; Define leadscrew locations (in case I need to fake Y)
 
 ; Stall Detection & Sensorless Homing
 ; TODO tuning still needed
