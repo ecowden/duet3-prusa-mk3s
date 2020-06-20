@@ -9,17 +9,19 @@ M83                                                   ; ...but relative extruder
 M550 P"Duet 3"                                        ; set printer name
 
 ; Drives
-M569 P0.0 S1                                          ; physical drive 0.0 goes forwards
-M569 P0.1 S1                                          ; physical drive 0.1 goes forwards
-M569 P0.2 S1                                          ; physical drive 0.2 goes forwards
-M569 P0.3 S1                                          ; physical drive 0.3 goes forwards
-M584 X0.0 Y0.1 Z0.2 E0.3                              ; set drive mapping
+M569 P0.0 S1 D3                                       ; X Moons HA6 - 0.0 goes forwards
+M569 P0.1 S1 D3                                       ; Y Moons HA6 - 0.1 goes forwards
+M569 P0.2 S0 D3                                       ; Z Left  Stock MK3S - 0.2 goes backwards
+M569 P0.3 S0 D3                                       ; Z Right Stock MK3S - 0.3 goes backwards
+M569 P0.4 S0 D3                                       ; E LDO "Slim Power" - 0.4 goes backwards
+M584 X0.0 Y0.1 Z0.2:0.3 E0.4                          ; set drive mapping
 M350 X32 Y32 Z64 E32 I1                               ; configure microstepping with interpolation
 M92 X400.00 Y400.00 Z800.00 E1660.00                  ; set steps per mm
 M566 X900.00 Y900.00 Z12.00 E240.00                   ; set maximum instantaneous speed changes (mm/min)
-M203 X10800.00 Y10800.00 Z720.00 E7200.00             ; set maximum speeds (mm/min)
+; M203 X10800.00 Y10800.00 Z720.00 E7200.00             ; Conservative - set maximum speeds (mm/min)
+M203 X15000.00 Y15000.00 Z720.00 E7200.00             ; Aggressive - set maximum speeds (mm/min)
 M201 X2500.00 Y2500.00 Z200.00 E5000.00               ; set accelerations (mm/s^2)
-M906 X600 Y600 Z600 E1100 I50                         ; set motor currents (mA) and motor idle factor in per cent
+M906 X800 Y1600 Z600 E1000 I50                        ; DEBUG Low set motor currents (mA) and motor idle factor in per cent
 M84 S30                                               ; Set idle timeout
 
 ; Axis Limits
@@ -29,6 +31,14 @@ M208 X255 Y212.5 Z210 S0                              ; set axis maxima
 ; Endstops
 M574 X1 S3                                            ; configure sensorless endstop for low end on X
 M574 Y1 S3                                            ; configure sensorless endstop for low end on Y
+M574 Z2 S3                                            ; configure sensorless endstop for high end on Z
+
+; Stall Detection & Sensorless Homing
+; TODO tuning still needed
+; Adjust S to set threshold, higher is less sensitive
+M915 X S0 F0 H400 R0                                  ; X Axis stall detection
+M915 Y S0 F0 H400 R0                                  ; Y Axis stall detection
+M915 Z S4 F1 H200 R0                                  ; Z Axis stall detection
 
 ; Z-Probe
 M558 P5 C"io3.in" H5 F120 T3000                       ; set Z probe type to switch and the dive height + speeds
