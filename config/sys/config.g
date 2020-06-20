@@ -49,10 +49,10 @@ M557 X24:228 Y6:210 S29.1428571429                    ; define mesh grid
 ; Heaters
 M308 S0 P"temp0" Y"thermistor" A"Bed" T100000 B4092   ; configure sensor 0 as thermistor on pin temp0
 M950 H0 C"out0" T0                                    ; create bed heater output on out0 and map it to sensor 0
-M307 H0 B0 S1.00 A136.6 C448.4 D9.9 V23.7             ; enable PID mode for the bed heater and tune
+M307 H0 B0 S1.00 A155.3 C497.5 D9.2 V24.0             ; enable PID mode for the bed heater and tune
 M140 H0                                               ; map heated bed to heater 0
 M143 H0 S125                                          ; set temperature limit for heater 0 to 125C
-M308 S1 P"temp1" Y"thermistor" A"Hotend" T100000 B4725 C7.06e-8  ; configure sensor 1 as thermistor on pin temp1
+M308 S1 P"0.spi.cs0" Y"rtd-max31865" A"Hotend"        ; configure sensor 1 as PT100 on RTD1
 M950 H1 C"out1" T1                                    ; create nozzle heater output on out1 and map it to sensor 1
 M307 H1 B0 S1.00                                      ; disable bang-bang mode for heater  and set PWM limit
 
