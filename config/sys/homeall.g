@@ -1,6 +1,6 @@
 ; homeall.g
 ; called to home all axes
 ;
-homex.g
-homey.g
-homez.g
+M98 P"homex.g"
+M98 P"homey.g"
+M98 P"homez.g"
