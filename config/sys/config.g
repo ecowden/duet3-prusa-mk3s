@@ -24,6 +24,11 @@ M201 X2500.00 Y2500.00 Z200.00 E5000.00               ; set accelerations (mm/s^
 M906 X800 Y1600 Z600 E1000 I50                        ; DEBUG Low set motor currents (mA) and motor idle factor in per cent
 M84 S30                                               ; Set idle timeout
 
+; From cheeseandham on Railcore Discord, June 20, 2020
+; M201 X4000 Y4000 Z100 E1500       ; Accelerations (mm/s^2)
+; M203 X24000 Y24000 Z800 E3600     ; Maximum speeds (mm/min)
+; M566 X1000 Y1000 Z100 E1500       ; Maximum jerk speeds mm/minute
+
 ; Axis Limits
 M208 X0 Y-4 Z0.15 S1                                  ; set axis minima
 M208 X255 Y212.5 Z210 S0                              ; set axis maxima
