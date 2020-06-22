@@ -10,12 +10,12 @@ M400                ; make sure everything has stopped before we reset the motor
 M913 Y100           ; motor currents back to normal
 
 ; Ensure StealthChop is tuned by making controlled moves
-M569 P0.1 D3
-G90                 ; absolute positioning
-G1 Y50 F4500        ; Autotune StealthChop by making a small, medium-speed movement...
-G1 Y0 F4500       ; ...and going back home
-G1 Y50 F15000        ; Autotune StealthChop by making a small, high-speed movement...
-G1 Y0 F15000       ; ...and going back home
+; M569 P0.1 D3
+; G90                 ; absolute positioning
+; G1 Y50 F4500        ; Autotune StealthChop by making a small, medium-speed movement...
+; G1 Y0 F4500       ; ...and going back home
+; G1 Y50 F15000        ; Autotune StealthChop by making a small, high-speed movement...
+; G1 Y0 F15000       ; ...and going back home
 
 ; Lower Z back to original position
 G91                 ; relative positioning

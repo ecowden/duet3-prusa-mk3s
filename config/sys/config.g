@@ -38,19 +38,18 @@ M574 Y1 S3                                            ; configure sensorless end
 M574 Z1 S2                                            ; configure Z Probe for low end on Z
 
 ; Z-Probe
-; M558 P5 C"^io6.in" H0.7 F1000 T6000 A20 S0.005 ; PINDA
-M558 P5 C"^io6.in" H0.7 F1000 T15000 A20 S0.005           ; PINDA
-; M558 P5 C"io6.in" H5 F120 T3000                       ; set Z probe type to switch and the dive height + speeds
+M558 P5 C"^io6.in" H1.7 F1000 T15000 A20 S0.005       ; Define PINDA probe
 M308 S2 P"temp1" Y"thermistor" A"PINDA" T100000 B3950 ; set PINDA thermistor as S2
 G31 P500 X23 Y5 Z1                                    ; set Z probe trigger value, offset and trigger height
 M557 X24:228 Y6:210 S29.1428571429                    ; define mesh grid
+; M557 X1:205 Y:210 S29.1428571429                    ; define mesh grid
 
 ; Stall Detection & Sensorless Homing
 ; TODO tuning still needed
 ; Adjust S to set threshold, higher is less sensitive
-M915 X S0 F0 H400 R0                                  ; X Axis stall detection
-M915 Y S0 F0 H400 R0                                  ; Y Axis stall detection
-; M915 Z S0 F1 H200 R2                                  ; Z Axis stall detection
+M915 X S0  F0 H400 R0                                 ; X Axis stall detection
+M915 Y S0  F0 H400 R0                                 ; Y Axis stall detection
+; M915 Z S10 F1 H200 R2                                 ; Z Axis stall detection
 
 ;Leadscrew locations
 M671 X-38.5:291.5 Y105:105 S7.5                       ; Define leadscrew locations (with fake Y coordinates)
