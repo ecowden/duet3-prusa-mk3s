@@ -29,8 +29,8 @@ M84 S30                                               ; Set idle timeout
 ; M566 X1000 Y1000 Z100 E1500       ; Maximum jerk speeds mm/minute
 
 ; Axis Limits
-M208 X0 Y-4 Z0.15 S1                                  ; set axis minima
-M208 X255 Y212.5 Z210 S0                              ; set axis maxima
+M208 X-2  Y-6    Z0   S1                              ; set axis minima
+M208 X250 Y212.5 Z210 S0                              ; set axis maxima
 
 ; Endstops
 M574 X1 S3                                            ; configure sensorless endstop for low end on X
