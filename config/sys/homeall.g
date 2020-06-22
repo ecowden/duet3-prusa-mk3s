@@ -22,7 +22,6 @@ G1 X0 Y0 F15000
 ; Z Axis
 G91                  ; relative positioning
 G1 H1 Z-215.15 F3000 ; move Z down until the endstop is triggered
-G92 Z0.15            ; set Z position to axis minimum (you may want to adjust this)
 
 ; Cleanup
 M400                ; make sure everything has stopped before we reset the motor currents

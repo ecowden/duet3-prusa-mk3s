@@ -5,7 +5,6 @@
 G91                  ; relative positioning
 G1 H2 Z5 F3000       ; lift Z relative to current position
 G1 H1 Z-215.15 F3000 ; move Z down until the endstop is triggered
-G92 Z0.15            ; set Z position to axis minimum (you may want to adjust this)
 G90
 
 ; Uncomment the following lines to lift Z after probing

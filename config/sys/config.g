@@ -38,11 +38,10 @@ M574 Y1 S3                                            ; configure sensorless end
 M574 Z1 S2                                            ; configure Z Probe for low end on Z
 
 ; Z-Probe
-M558 P5 C"^io6.in" H1.7 F1000 T15000 A20 S0.005       ; Define PINDA probe
+M558 P5 C"^io6.in" H1.0 F1000 T15000 A20 S0.005       ; Define PINDA probe
 M308 S2 P"temp1" Y"thermistor" A"PINDA" T100000 B3950 ; set PINDA thermistor as S2
 G31 P500 X23 Y5 Z1                                    ; set Z probe trigger value, offset and trigger height
-M557 X24:228 Y6:210 S29.1428571429                    ; define mesh grid
-; M557 X1:205 Y:210 S29.1428571429                    ; define mesh grid
+M557 X24:228 Y6:210 S34                               ; define mesh grid
 
 ; Stall Detection & Sensorless Homing
 ; TODO tuning still needed
@@ -77,7 +76,8 @@ M563 P0 S"Mosquito" D0 H1 F0                          ; define tool 0
 G10 P0 X0 Y0 Z0                                       ; set tool 0 axis offsets
 G10 P0 R0 S0                                          ; set initial tool 0 active and standby temperatures to 0C
 
-; Custom settings are not defined
+; Select the only tool
+T0
 
 ; Miscellaneous
 M501                                                  ; load saved parameters from non-volatile memory
