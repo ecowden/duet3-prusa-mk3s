@@ -12,11 +12,8 @@ M913 Y50            ; reduce Y motor current to 50% to prevent belts slipping
 G91                 ; relative positioning
 G1 H2 Z5 F300       ; lift Z relative to current position
 
-; X Axis
-G1 H1 X-260 F3000   ; move quickly to X axis endstop and stop there (only one pass)
-
-; Y Axis
-G1 H1 Y-221.5 F3000 ; move quickly to Y axis endstop and stop there (only one pass)
+; X & Y Axes
+G1 H1 X-260 Y-221.5 F3000   ; move quickly to X axis endstop and stop there (only one pass)
 
 ; Move X,Y to 0,0 for Z homing
 G90                 ; absolute positioning
