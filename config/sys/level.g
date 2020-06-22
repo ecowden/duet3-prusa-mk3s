@@ -13,6 +13,6 @@ G30 P2 X205     Y205     Z-99999
 G30 P3 X1       Y205     Z-99999  S2  ; ...after fourth point, tram bed  
 
 ; Bed may have shifted, so go home and re-home Z
-G1 Z2 F1000                           ; Lift Z a little
-G1 X0 Y0 F15000                       ; Go home
-G28 Z                                 ; Home Z
+; G1 Z2 F1000                           ; Lift Z a little
+; G1 X0 Y0 F15000                       ; Go home
+; G28 Z                                 ; Home Z
