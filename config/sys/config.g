@@ -40,7 +40,7 @@ M574 Z1 S2                                            ; configure Z Probe for lo
 ; Z-Probe
 M558 P5 C"^io6.in" H1.0 F1000 T15000 A20 S0.005       ; Define PINDA probe
 M308 S2 P"temp1" Y"thermistor" A"PINDA" T100000 B3950 ; set PINDA thermistor as S2
-G31 P500 X23 Y5 Z1.15                                 ; set Z probe trigger value, offset and trigger height
+G31 P500 X23 Y5 Z1.85                                 ; set Z probe trigger value, offset and trigger height
 M557 X24:228 Y6:210 S34                               ; define mesh grid
 
 ; Stall Detection & Sensorless Homing
@@ -56,7 +56,6 @@ M671 X-38.5:291.5 Y105:105 S7.5                       ; Define leadscrew locatio
 ; Heaters
 M308 S0 P"temp0" Y"thermistor" A"Bed" T100000 B4092   ; configure sensor 0 as thermistor on pin temp0
 M950 H0 C"out0" T0                                    ; create bed heater output on out0 and map it to sensor 0
-; M307 H0 B0 S1.00 A155.3 C497.5 D9.2 V24.0 F10         ; enable PID mode for the bed heater and tune, use PWM of 60Hz
 M307 H0 B1 S1.00 A155.3 C497.5 D9.2 V24.0             ; enable bang bang mode for the bed heater and tune, PWM causes noise with Z steppers
 M140 H0                                               ; map heated bed to heater 0
 M143 H0 S125                                          ; set temperature limit for heater 0 to 125C
@@ -83,5 +82,5 @@ T0                                                    ; Select the one and only 
 M207 P0 S0.6 F1800                                    ; Retract 0.6mm at 30mm/sec
 
 ; Miscellaneous
-M501                                                  ; load saved parameters from non-volatile memory
+; M501                                                  ; load saved parameters from non-volatile memory
 
