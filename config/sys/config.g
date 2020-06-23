@@ -40,7 +40,7 @@ M574 Z1 S2                                            ; configure Z Probe for lo
 ; Z-Probe
 M558 P5 C"^io6.in" H1.0 F1000 T15000 A20 S0.005       ; Define PINDA probe
 M308 S2 P"temp1" Y"thermistor" A"PINDA" T100000 B3950 ; set PINDA thermistor as S2
-G31 P500 X23 Y5 Z1.85                                 ; set Z probe trigger value, offset and trigger height
+G31 P500 X23 Y5 Z1.70                                 ; set Z probe trigger value, offset and trigger height
 M557 X24:228 Y6:210 S34                               ; define mesh grid
 
 ; Stall Detection & Sensorless Homing
@@ -80,6 +80,12 @@ G10 P0 R0 S0                                          ; set initial tool 0 activ
 ; Miscellaneous Configuration
 T0                                                    ; Select the one and only tool
 M207 P0 S0.6 F1800                                    ; Retract 0.6mm at 30mm/sec
+
+; Dynamic Acceleration
+; https://duet3d.dozuki.com/Wiki/Gcode#Section_M593_Configure_Dynamic_Acceleration_Adjustment
+; Divide speed by distance between rings 
+; 50mm/s / 1.5mm = 33.33Hz
+M593 F40.5                                            ; cancel ringing at 40.5Hz
 
 ; Miscellaneous
 ; M501                                                  ; load saved parameters from non-volatile memory
