@@ -16,12 +16,17 @@ M569 P0.3 S0 D3                                       ; Z Right Stock MK3S - 0.3
 M569 P0.4 S1 D3                                       ; E LDO "Slim Power" - 0.4 goes forwards
 M584 X0.0 Y0.1 Z0.2:0.3 E0.4                          ; set drive mapping
 M350 X32 Y32 Z64 E32 I1                               ; configure microstepping with interpolation
-M92 X400.00 Y400.00 Z1600.00 E1660.00                  ; set steps per mm
-M566 X900.00 Y900.00 Z12.00 E240.00                   ; set maximum instantaneous speed changes (mm/min)
+M92 X400.00 Y400.00 Z1600.00 E1660.00                 ; set steps per mm
+M566 X400.00 Y400.00 Z12.00 E240.00                   ; set maximum instantaneous speed changes (mm/min)
 M203 X15000.00 Y15000.00 Z720.00 E7200.00             ; Aggressive - set maximum speeds (mm/min)
-M201 X2500.00 Y2500.00 Z200.00 E5000.00               ; set accelerations (mm/s^2)
+M201 X4000.00 Y4000.00 Z200.00 E5000.00               ; set accelerations (mm/s^2)
 M906 X1600 Y1600 Z600 E1000 I50                       ; set motor currents (mA) and motor idle factor in per cent
 M84 S30                                               ; Set idle timeout
+
+; From cheeseandham on Railcore Discord, June 20, 2020 (for reference)
+; M201 X4000 Y4000 Z100 E1500       ; Accelerations (mm/s^2)
+; M203 X24000 Y24000 Z800 E3600     ; Maximum speeds (mm/min)
+; M566 X1000 Y1000 Z100 E1500       ; Maximum jerk speeds mm/minute
 
 ; Advanced Trinamic Drive Tuning
 ; Tune tpwmthrs (V) so stealthchop runs at appropriate speeds
@@ -31,11 +36,6 @@ M569 P0.1 V30   H5                                    ; Y  - Set tpwmthrs so Ste
 M569 P0.2 V50   H5                                    ; ZL - Set tpwmthrs so StealthChop runs up to 12.5mm/sec
 M569 P0.3 V50   H5                                    ; zR - Set tpwmthrs so StealthChop runs up to 12.5mm/sec
 M569 P0.4 V25   H5                                    ; E  - Set tpwmthrs so StealthChop runs up to 36.1mm/sec
-
-; From cheeseandham on Railcore Discord, June 20, 2020 (for reference)
-; M201 X4000 Y4000 Z100 E1500       ; Accelerations (mm/s^2)
-; M203 X24000 Y24000 Z800 E3600     ; Maximum speeds (mm/min)
-; M566 X1000 Y1000 Z100 E1500       ; Maximum jerk speeds mm/minute
 
 ; Axis Limits
 M208 X-2  Y-6    Z0.15  S1                            ; set axis minima
@@ -50,12 +50,14 @@ M574 Z1 S2                                            ; configure Z Probe for lo
 M308 S2 P"temp1" Y"thermistor" A"PINDA" T100000 B3950 ; set PINDA thermistor as S2
 M558 P5 C"^io6.in" H1.0 F1000 T15000 A20 S0.005       ; Define PINDA probe 
 M557 X24:228 Y6:210 S34                               ; define mesh grid
-G31 P500 X23 Y5 Z1.70 H2 S25.1 C0.00670705004010898   ; set Z probe trigger value, offset and trigger height
+G31 P500 X23 Y5 Z1.70                                 ; set Z probe trigger value, offset and trigger height
+
+; PINDA Temp compensation is making first layers worse. Removing pending further research.
+; G31 P500 X23 Y5 Z1.70 H2 S25.1 C0.00670705004010898   ; set Z probe trigger value, offset and trigger height
                                                       ; calibrated at 25.1C with coefficient=0.00670705004010898
                                                       ; fairly accurate up to about 45°C
 
 ; Stall Detection & Sensorless Homing
-; TODO tuning still needed
 ; Adjust S to set threshold, higher is less sensitive
 M915 X S0  F0 H400 R0                                 ; X Axis stall detection
 M915 Y S0  F0 H400 R0                                 ; Y Axis stall detection
@@ -72,8 +74,8 @@ M140 H0                                               ; map heated bed to heater
 M143 H0 S125                                          ; set temperature limit for heater 0 to 125C
 M308 S1 P"0.spi.cs0" Y"rtd-max31865" A"Hotend"        ; configure sensor 1 as PT100 on RTD1
 M950 H1 C"out1" T1                                    ; create nozzle heater output on out1 and map it to sensor 1
-; M307 H1 B0 S1.00 A830.5 C217.5 D3.5 V24.4             ; enable PID mode for heater and tune (no print fan)
-M307 H1 B0 S1.00 A314.3 C87.8 D2.3 V24.4             ; enable PID mode for heater and tune  (100% print fan)
+; M307 H1 B0 S1.00 A830.5 C217.5 D3.5 V24.4           ; enable PID mode for heater and tune (no print fan)
+M307 H1 B0 S1.00 A314.3 C87.8 D2.3 V24.4              ; enable PID mode for heater and tune  (100% print fan)
 
 M308 S10 P"mcu-temp" Y"mcu-temp" A"MCU"                           ; Set MCU on Sensor 10
 
@@ -95,8 +97,10 @@ M207 P0 S0.6 F1800                                    ; Retract 0.6mm at 30mm/se
 ; Dynamic Acceleration
 ; https://duet3d.dozuki.com/Wiki/Gcode#Section_M593_Configure_Dynamic_Acceleration_Adjustment
 ; Divide speed by distance between rings 
-; 50mm/s / 1.5mm = 33.33Hz
-M593 F40.5                                            ; cancel ringing at 40.5Hz
+M593 F33                                            ; cancel ringing at 33Hz
+
+; Babystepping
+M290 R0 S0.25                                         ; Set babystepping at an absolute value
 
 ; Miscellaneous
 M501                                                  ; load saved parameters from non-volatile memory
