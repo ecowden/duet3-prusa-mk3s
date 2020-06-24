@@ -20,8 +20,17 @@ M92 X400.00 Y400.00 Z1600.00 E1660.00                  ; set steps per mm
 M566 X900.00 Y900.00 Z12.00 E240.00                   ; set maximum instantaneous speed changes (mm/min)
 M203 X15000.00 Y15000.00 Z720.00 E7200.00             ; Aggressive - set maximum speeds (mm/min)
 M201 X2500.00 Y2500.00 Z200.00 E5000.00               ; set accelerations (mm/s^2)
-M906 X800 Y1600 Z600 E1000 I50                        ; DEBUG Low set motor currents (mA) and motor idle factor in per cent
+M906 X1600 Y1600 Z600 E1000 I50                       ; set motor currents (mA) and motor idle factor in per cent
 M84 S30                                               ; Set idle timeout
+
+; Advanced Trinamic Drive Tuning
+; Tune tpwmthrs (V) so stealthchop runs at appropriate speeds
+; and tune thigh (H) to avoid shifting into fullstep mode
+M569 P0.0 V30   H5                                    ; X  - Set tpwmthrs so StealthChop runs up to 125mm/sec
+M569 P0.1 V30   H5                                    ; Y  - Set tpwmthrs so StealthChop runs up to 125mm/sec
+M569 P0.2 V50   H5                                    ; ZL - Set tpwmthrs so StealthChop runs up to 12.5mm/sec
+M569 P0.3 V50   H5                                    ; zR - Set tpwmthrs so StealthChop runs up to 12.5mm/sec
+M569 P0.4 V25   H5                                    ; E  - Set tpwmthrs so StealthChop runs up to 36.1mm/sec
 
 ; From cheeseandham on Railcore Discord, June 20, 2020 (for reference)
 ; M201 X4000 Y4000 Z100 E1500       ; Accelerations (mm/s^2)
@@ -38,10 +47,12 @@ M574 Y1 S3                                            ; configure sensorless end
 M574 Z1 S2                                            ; configure Z Probe for low end on Z
 
 ; Z-Probe
-M558 P5 C"^io6.in" H1.0 F1000 T15000 A20 S0.005       ; Define PINDA probe
 M308 S2 P"temp1" Y"thermistor" A"PINDA" T100000 B3950 ; set PINDA thermistor as S2
-G31 P500 X23 Y5 Z1.70                                 ; set Z probe trigger value, offset and trigger height
+M558 P5 C"^io6.in" H1.0 F1000 T15000 A20 S0.005       ; Define PINDA probe 
 M557 X24:228 Y6:210 S34                               ; define mesh grid
+G31 P500 X23 Y5 Z1.70 H2 S25.1 C0.00670705004010898   ; set Z probe trigger value, offset and trigger height
+                                                      ; calibrated at 25.1C with coefficient=0.00670705004010898
+                                                      ; fairly accurate up to about 45°C
 
 ; Stall Detection & Sensorless Homing
 ; TODO tuning still needed
@@ -88,5 +99,5 @@ M207 P0 S0.6 F1800                                    ; Retract 0.6mm at 30mm/se
 M593 F40.5                                            ; cancel ringing at 40.5Hz
 
 ; Miscellaneous
-; M501                                                  ; load saved parameters from non-volatile memory
+M501                                                  ; load saved parameters from non-volatile memory
 
