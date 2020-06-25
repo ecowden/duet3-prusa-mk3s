@@ -49,8 +49,8 @@ M574 Z1 S2                                            ; configure Z Probe for lo
 ; Z-Probe
 M308 S2 P"temp1" Y"thermistor" A"PINDA" T100000 B3950 ; set PINDA thermistor as S2
 M558 P5 C"^io6.in" H1.0 F1000 T15000 A20 S0.005       ; Define PINDA probe 
-M557 X24:228 Y6:210 S34                               ; define mesh grid
-G31 P500 X23 Y5 Z1.70                                 ; set Z probe trigger value, offset and trigger height
+M557 X24:228 Y6:210 P3                                ; define mesh grid, use 3x3 because we can't easily avoid bed magnets in a 7x7 by skipping points
+G31 P500 X23 Y5 Z0.65                                 ; set Z probe trigger value, offset and trigger height
 
 ; PINDA Temp compensation is making first layers worse. Removing pending further research.
 ; G31 P500 X23 Y5 Z1.70 H2 S25.1 C0.00670705004010898   ; set Z probe trigger value, offset and trigger height
@@ -59,8 +59,8 @@ G31 P500 X23 Y5 Z1.70                                 ; set Z probe trigger valu
 
 ; Stall Detection & Sensorless Homing
 ; Adjust S to set threshold, higher is less sensitive
-M915 X S0  F0 H400 R0                                 ; X Axis stall detection
-M915 Y S0  F0 H400 R0                                 ; Y Axis stall detection
+M915 X S0  F0 H400 R-10                                 ; X Axis stall detection
+M915 Y S0  F0 H400 R-10                                 ; Y Axis stall detection
 ; M915 Z S10 F1 H200 R2                                 ; Z Axis stall detection
 
 ; Leadscrew locations
@@ -100,7 +100,7 @@ M207 P0 S0.6 F1800                                    ; Retract 0.6mm at 30mm/se
 M593 F33                                            ; cancel ringing at 33Hz
 
 ; Babystepping
-M290 R0 S0.25                                         ; Set babystepping at an absolute value
+M290 R0 S0.00                                         ; Set babystepping at an absolute value
 
 ; Miscellaneous
 M501                                                  ; load saved parameters from non-volatile memory

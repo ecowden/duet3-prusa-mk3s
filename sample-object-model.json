@@ -1,0 +1,46 @@
+{
+    "key": "",
+    "flags": "v",
+    "result": {
+        "boards": [
+            {}
+        ],
+        "directories": {},
+        "fans": [
+            {},
+            {}
+        ],
+        "heat": {},
+        "inputs": [
+            {},
+            {},
+            {},
+            {},
+            {},
+            {},
+            {},
+            {},
+            {},
+            {},
+            {},
+            {}
+        ],
+        "job": {},
+        "limits": {},
+        "move": {},
+        "network": {},
+        "sensors": {},
+        "seqs": {},
+        "spindles": [
+            {},
+            {}
+        ],
+        "state": {},
+        "tools": [
+            {}
+        ],
+        "volumes": [
+            {}
+        ]
+    }
+}
