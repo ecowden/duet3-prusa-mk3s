@@ -51,7 +51,7 @@ M308 S2 P"temp1" Y"thermistor" A"PINDA" T100000 B3950 ; set PINDA thermistor as 
 M558 P5 C"^io6.in" H1.0 F1000 T15000 A20 S0.005       ; Define PINDA probe 
 M557 X24:228 Y6:210 P3                                ; define mesh grid, use 3x3 because we can't easily avoid bed magnets in a 7x7 by skipping points
 ; G31 P500 X23 Y5 Z0.65                                 ; set Z probe trigger value, offset and trigger height with NO temp compensation
-G31 P500 X23 Y5 Z0.65 H2 S25.1 C0.02                  ; set Z probe trigger value, offset and trigger height with PINDA temp compensation
+G831                                                  ; set Z probe trigger value, offset and trigger height with PINDA temp compensation
 
 ; Stall Detection & Sensorless Homing
 ; Adjust S to set threshold, higher is less sensitive
