@@ -48,16 +48,16 @@ M574 Z1 S2                                            ; configure Z Probe for lo
 
 ; Z-Probe
 M308 S2 P"temp1" Y"thermistor" A"PINDA" T100000 B3950 ; set PINDA thermistor as S2
-M558 P5 C"^io6.in" H1.0 F1000 T15000 A20 S0.005       ; Define PINDA probe 
+M558 P5 C"^io6.in" H1.0 F1000 T15000 A20 S0.003       ; Define PINDA probe 
 M557 X24:228 Y6:210 P3                                ; define mesh grid, use 3x3 because we can't easily avoid bed magnets in a 7x7 by skipping points
-; G31 P500 X23 Y5 Z0.65                                 ; set Z probe trigger value, offset and trigger height with NO temp compensation
+M376 H10                                              ; Taper off mesh compensation above 10mm
 G831                                                  ; set Z probe trigger value, offset and trigger height with PINDA temp compensation
 
 ; Stall Detection & Sensorless Homing
 ; Adjust S to set threshold, higher is less sensitive
-M915 X S0  F0 H400 R-10                                 ; X Axis stall detection
-M915 Y S0  F0 H400 R-10                                 ; Y Axis stall detection
-; M915 Z S10 F1 H200 R2                                 ; Z Axis stall detection
+M915 X S-1  F0 H400 R0                                ; X Axis stall detection
+M915 Y S-1  F0 H400 R0                                ; Y Axis stall detection
+M915 Z S20   F1 H200 R2                                ; Z Axis stall detection
 
 ; Leadscrew locations
 M671 X-38.5:291.5 Y105:105 S7.5                       ; Define leadscrew locations (with fake Y coordinates)
