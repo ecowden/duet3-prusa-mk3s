@@ -59,7 +59,7 @@ G831                                                  ; set Z probe trigger valu
 ; Adjust S to set threshold, higher is less sensitive
 M915 X S-1  F0 H400 R0                                ; X Axis stall detection
 M915 Y S-1  F0 H400 R0                                ; Y Axis stall detection
-M915 Z S20   F1 H200 R2                                ; Z Axis stall detection
+M915 Z S20  F1 H200 R2                                ; Z Axis stall detection
 
 ; Leadscrew locations
 M671 X-38.5:291.5 Y105:105 S7.5                       ; Define leadscrew locations (with fake Y coordinates)
