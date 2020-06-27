@@ -95,7 +95,7 @@ M207 P0 S0.6 F1800                                    ; Retract 0.6mm at 30mm/se
 ; Dynamic Acceleration
 ; https://duet3d.dozuki.com/Wiki/Gcode#Section_M593_Configure_Dynamic_Acceleration_Adjustment
 ; Divide speed by distance between rings 
-M593 F33                                            ; cancel ringing at 33Hz
+M593 F33                                              ; cancel ringing at 33Hz
 
 ; Babystepping
 M290 R0 S0.00                                         ; Set babystepping at an absolute value
