@@ -17,18 +17,20 @@ M569 P0.4 S1 D3                                       ; E LDO "Slim Power" - 0.4
 M584 X0.0 Y0.1 Z0.2:0.3 E0.4                          ; set drive mapping
 M350 X32 Y32 Z64 E32 I1                               ; configure microstepping with interpolation
 M92 X400.00 Y400.00 Z1600.00 E1660.00                 ; set steps per mm
-M566 X400.00 Y400.00 Z12.00 E240.00                   ; set maximum instantaneous speed changes (mm/min)
-M203 X15000.00 Y15000.00 Z720.00 E7200.00             ; Aggressive - set maximum speeds (mm/min)
-M201 X4000.00 Y4000.00 Z200.00 E5000.00               ; set accelerations (mm/s^2)
 M906 X1600 Y1600 Z800 E1000 I30                       ; set motor currents (mA) and motor idle factor in per cent
 M84 S30                                               ; Set idle timeout
+
+; Speeds
+M203 X15000.00 Y15000.00 Z720.00 E7200.00             ; set maximum speeds (mm/min)
+M201 X4000.00  Y4000.00  Z200.00 E5000.00             ; set accelerations (mm/s^2)
+M566 X1000.00  Y1000.00  Z24.00  E480.00              ; set maximum jerk (instantaneous speed changes) (mm/min)
 
 ; From cheeseandham on Railcore Discord, June 20, 2020 (for reference)
 ; M201 X4000 Y4000 Z100 E1500       ; Accelerations (mm/s^2)
 ; M203 X24000 Y24000 Z800 E3600     ; Maximum speeds (mm/min)
 ; M566 X1000 Y1000 Z100 E1500       ; Maximum jerk speeds mm/minute
 
-; Advanced Trinamic Drive Tuning
+; Trinamic Drive Tuning
 ; Tune tpwmthrs (V) so stealthchop runs at appropriate speeds
 ; and tune thigh (H) to avoid shifting into fullstep mode
 M569 P0.0 V30   H5                                    ; X  - Set tpwmthrs so StealthChop runs up to 125mm/sec
