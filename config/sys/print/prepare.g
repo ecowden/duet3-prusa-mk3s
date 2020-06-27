@@ -5,8 +5,6 @@
 G90                              ; use absolute coordinates
 M83                              ; extruder relative mode
 
-M572 D0 S0.07                    ; configure pressure advance
-
 G828                             ; home if not homed
 
 M98 P"/sys/print/prepare-bed.g"  ; perform bed leveling, mesh, etc.

@@ -1,0 +1,47 @@
+[
+    {
+        "active": [
+            0
+        ],
+        "axes": [
+            [
+                0
+            ],
+            [
+                1
+            ]
+        ],
+        "extruders": [
+            0
+        ],
+        "fans": [
+            0
+        ],
+        "filamentExtruder": 0,
+        "heaters": [
+            1
+        ],
+        "mix": [
+            1.00
+        ],
+        "name": "Mosquito",
+        "number": 0,
+        "offsets": [
+            0,
+            0,
+            0
+        ],
+        "offsetsProbed": 0,
+        "retraction": {
+            "extraRestart": 0,
+            "length": 0.6,
+            "speed": 30.0,
+            "unretractSpeed": 30.0,
+            "zHop": 0
+        },
+        "standby": [
+            0
+        ],
+        "state": "active"
+    }
+]
