@@ -21,9 +21,9 @@ M906 X1600 Y1600 Z800 E1000 I30                       ; set motor currents (mA) 
 M84 S30                                               ; Set idle timeout
 
 ; Speeds
-M203 X15000.00 Y15000.00 Z720.00 E7200.00             ; set maximum speeds (mm/min)
-M201 X4000.00  Y4000.00  Z200.00 E5000.00             ; set accelerations (mm/s^2)
-M566 X480.00   Y480.00   Z12.00  E480.00              ; set maximum jerk (instantaneous speed changes) (mm/min)
+M203 X15000.00 Y15000.00 Z720.00  E7200.00             ; set maximum speeds (mm/min)
+M201 X4000.00  Y4000.00  Z1000.00 E5000.00             ; set accelerations (mm/s^2)
+M566 X480.00   Y480.00   Z24.00   E3600.00             ; set maximum jerk (instantaneous speed changes) (mm/min)
 
 ; From cheeseandham on Railcore Discord, June 20, 2020 (for reference)
 ; M201 X4000 Y4000 Z100 E1500       ; Accelerations (mm/s^2)
