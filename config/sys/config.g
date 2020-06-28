@@ -23,7 +23,7 @@ M84 S30                                               ; Set idle timeout
 ; Speeds
 M203 X15000.00 Y15000.00 Z720.00 E7200.00             ; set maximum speeds (mm/min)
 M201 X4000.00  Y4000.00  Z200.00 E5000.00             ; set accelerations (mm/s^2)
-M566 X1000.00  Y1000.00  Z24.00  E480.00              ; set maximum jerk (instantaneous speed changes) (mm/min)
+M566 X480.00   Y480.00   Z12.00  E480.00              ; set maximum jerk (instantaneous speed changes) (mm/min)
 
 ; From cheeseandham on Railcore Discord, June 20, 2020 (for reference)
 ; M201 X4000 Y4000 Z100 E1500       ; Accelerations (mm/s^2)
@@ -52,7 +52,6 @@ M574 Z1 S2                                            ; configure Z Probe for lo
 M308 S2 P"temp1" Y"thermistor" A"PINDA" T100000 B3950 ; set PINDA thermistor as S2
 M558 P5 C"^io6.in" H1.0 F1000 T15000 A20 S0.003       ; Define PINDA probe 
 M557 X24:228 Y6:210 P3                                ; define mesh grid, use 3x3 because we can't easily avoid bed magnets in a 7x7 by skipping points
-M376 H10                                              ; Taper off mesh compensation above 10mm
 G831                                                  ; set Z probe trigger value, offset and trigger height with PINDA temp compensation
 
 ; Stall Detection & Sensorless Homing
@@ -75,8 +74,6 @@ M950 H1 C"out1" T1                                    ; create nozzle heater out
 ; M307 H1 B0 S1.00 A830.5 C217.5 D3.5 V24.4           ; enable PID mode for heater and tune (no print fan)
 M307 H1 B0 S1.00 A314.3 C87.8 D2.3 V24.4              ; enable PID mode for heater and tune  (100% print fan)
 
-M308 S10 P"mcu-temp" Y"mcu-temp" A"MCU"                           ; Set MCU on Sensor 10
-
 ; Fans
 M950 F0 C"out7" Q500                                  ; create fan 0 on pin out9 and set its frequency
 M106 P0 C"Part" S0 H-1                                ; set fan 0 name and value. Thermostatic control is turned off
@@ -87,19 +84,16 @@ M106 P1 C"Hotend" S1.0 H1 T35                         ; set fan 1 name and value
 M563 P0 S"Mosquito" D0 H1 F0                          ; define tool 0
 G10 P0 X0 Y0 Z0                                       ; set tool 0 axis offsets
 G10 P0 R0 S0                                          ; set initial tool 0 active and standby temperatures to 0C
-
-; Miscellaneous Configuration
 T0                                                    ; Select the one and only tool
-M207 P0 S0.6 F1800                                    ; Retract 0.6mm at 30mm/sec
 
 ; Dynamic Acceleration
 ; https://duet3d.dozuki.com/Wiki/Gcode#Section_M593_Configure_Dynamic_Acceleration_Adjustment
-; Divide speed by distance between rings 
-M593 F33                                              ; cancel ringing at 33Hz
+; Divide speed in mm/sec by distance between ringing artifacts in mm
+M593 F{ 60 / 1.8 }                                    ; cancel ringing at 33.3333Hz
 
 ; Babystepping
 M290 R0 S0.00                                         ; Set babystepping at an absolute value
 
 ; Miscellaneous
+M308 S10 P"mcu-temp" Y"mcu-temp" A"MCU"               ; Set MCU temp on Sensor 10
 M501                                                  ; load saved parameters from non-volatile memory
-
