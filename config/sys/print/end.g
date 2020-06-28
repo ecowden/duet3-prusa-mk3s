@@ -1,6 +1,6 @@
 ; /sys/print/end.g
 ; Clean up and shut down after a print
-
+M400                            ; wait for moves to finish
 M104 S0                         ; turn off temperature
 M140 S0                         ; turn off heatbed
 M107                            ; turn off fan
