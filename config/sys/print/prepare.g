@@ -7,7 +7,7 @@ M83                              ; extruder relative mode
 
 G828                             ; home if not homed
 
-M98 P"/sys/print/prepare-bed.g"  ; perform bed leveling, mesh, etc.
+M98 P"/sys/print/bed.g"          ; perform bed leveling, mesh, etc.
 
 ; prime nozzle
 G81                              ; Go home ASAP
