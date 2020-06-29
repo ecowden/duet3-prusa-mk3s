@@ -17,9 +17,9 @@ G90                 ; absolute positioning
 G1 X0 Y0 F15000
 
 ; Z Axis
-G91                  ; relative positioning
-G1 H1 Z-215.15 F3000 ; move Z down until the endstop is triggered
-G892                 ; set Z position to probe trigger height (see G892.g)
+; G91                  ; relative positioning
+G831                ; adjust PINDA temp compensation for current temperature
+G30                 ; use Z probe to home Z axis
 
 ; Cleanup
 M400                ; make sure everything has stopped before we reset the motor currents
