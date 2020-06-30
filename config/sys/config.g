@@ -40,7 +40,7 @@ M569 P0.3 V50   H5                                    ; zR - Set tpwmthrs so Ste
 M569 P0.4 V25   H5                                    ; E  - Set tpwmthrs so StealthChop runs up to 36.1mm/sec
 
 ; Axis Limits
-M208 X-2  Y-6    Z0.15  S1                            ; set axis minima
+M208 X-2  Y-8.0  Z0.15  S1                            ; set axis minima
 M208 X250 Y212.5 Z210   S0                            ; set axis maxima
 
 ; Endstops
@@ -51,8 +51,9 @@ M574 Z1 S2                                            ; configure Z Probe for lo
 ; Z-Probe
 M308 S2 P"temp1" Y"thermistor" A"PINDA" T100000 B3950 ; set PINDA thermistor as S2
 M558 P5 C"^io6.in" H1.0 F1000 T15000 A20 S0.003       ; Define PINDA probe 
-M557 X24:228 Y6:210 P3                                ; define mesh grid, use 3x3 because we can't easily avoid bed magnets in a 7x7 by skipping points
-; ^ ends at [205, 205]
+M557 X32:223 Y25:185 P4                               ; Define 4x4 bed mesh maximally away from magnets
+; mega map
+; M557 X22:234 Y4:216 P21
 G31 P500 X23 Y5                                       ; define z probe trigger value and x/y offsets
 G831                                                  ; set Z probe trigger height with PINDA temp compensation
 
@@ -63,7 +64,7 @@ M915 Y S-1  F0 H400 R0                                ; Y Axis stall detection
 M915 Z S20  F1 H200 R2                                ; Z Axis stall detection
 
 ; Leadscrew locations
-M671 X-38.5:291.5 Y105:105 S7.5                       ; Define leadscrew locations (with fake Y coordinates)
+M671 X-40.5:289.5 Y105:105 S7.5                       ; Define leadscrew locations (with fake Y coordinates)
 
 ; Heaters
 M308 S0 P"temp0" Y"thermistor" A"Bed" T100000 B4092   ; configure sensor 0 as thermistor on pin temp0
