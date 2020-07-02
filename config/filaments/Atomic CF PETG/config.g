@@ -1,7 +1,7 @@
 ; filaments/Atomic CF PETG/config.g
-M207 S0.6 F1800 Z0.4                                      ; retraction at 0.6mm at 30mm/sec with 0.4mm Z-hop
+M207 S0.8 F2100 Z0.4                                      ; retraction at 0.8mm at 35mm/sec with 0.4mm Z-hop
 M307 H1 A474.8 C134.2 D2.9 S1.0 V24.4 B0                  ; hot end PID tune at 250C with 30% fan
-M572 D0 S0.095   		                                  ; pressure advance, determined experimentally
+M572 D0 S0.045   		                                  ; pressure advance, determined @ 260°C, 0.6mm nozzle, 0.2mm layer height
 echo "Configured Atomic CF PETG"                          ; log configuration
 
 ; PID tune result, 250°C @ 30% fan

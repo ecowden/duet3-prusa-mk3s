@@ -50,11 +50,12 @@ M574 Z1 S2                                            ; configure Z Probe for lo
 
 ; Z-Probe
 M308 S2 P"temp1" Y"thermistor" A"PINDA" T100000 B3950 ; set PINDA thermistor as S2
-M558 P5 C"^io6.in" H1.0 F1000 T15000 A20 S0.003       ; Define PINDA probe 
-M557 X32:223 Y25:185 P4                               ; Define 4x4 bed mesh maximally away from magnets
+M558 P5 C"^io6.in" H1.0 F360 T15000 A20 S0.003        ; Define PINDA probe 
+; M557 X32:223 Y25:185 P4                               ; BAD! Define 4x4 bed mesh maximally away from magnets
+M557 X32:223 Y35:184 P3
 ; mega map
 ; M557 X22:234 Y4:216 P21
-G31 P500 X23 Y5                                       ; define z probe trigger value and x/y offsets
+; Ends @  :211   :211 (so offsets applied, coordinates requested & in heightmap are where PINDA measured)
 G831                                                  ; set Z probe trigger height with PINDA temp compensation
 
 ; Stall Detection & Sensorless Homing
