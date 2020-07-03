@@ -5,8 +5,9 @@
 ; relationship is not linear. Use a different offset and C-value depending on 
 ; the current temperature range.
 ;
-; These values are based on the default offsets from
-; https://github.com/prusa3d/Prusa-Firmware/blob/MK3_3.9.0/Firmware/Dcodes.cpp#L507-L513
+; These values are derived by measuring the height offsets at various temperatures,
+; performing a polynomial regression, and approximating the result in a series of 
+; short, linear segments.
 ;
 if sensors.analog[2].lastReading < 25       ;       temp < 25°C
     G31 P500 X23 Y5 Z{ 0.65 + 0.000 } H2 S20 C0.001685
