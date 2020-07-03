@@ -2,8 +2,10 @@
 ; called to home all axes
 ;
 
+M561                ; clear bed transform
+
 ; Prepare
-M400                ; Make sure everything is stopped
+M400                ; make sure everything is stopped
 M913 X50            ; reduce X motor current to 50% to prevent belts slipping
 M913 Y50            ; reduce Y motor current to 50% to prevent belts slipping
 G91                 ; relative positioning
@@ -17,7 +19,6 @@ G90                 ; absolute positioning
 G1 X0 Y0 F15000
 
 ; Z Axis
-; G91                  ; relative positioning
 G831                ; adjust PINDA temp compensation for current temperature
 G30                 ; use Z probe to home Z axis
 

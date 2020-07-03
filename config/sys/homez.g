@@ -2,7 +2,7 @@
 ; called to home the Z axis
 ;
 
-
+M561                     ; clear bed transform
 
 if move.axes[2].homed    ; Avoid unnecessary moves if re-homing
     if move.axes[2].machinePosition < 5
