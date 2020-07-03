@@ -65,7 +65,7 @@ M915 Y S-1  F0 H400 R0                                ; Y Axis stall detection
 M915 Z S20  F1 H200 R2                                ; Z Axis stall detection
 
 ; Leadscrew locations
-M671 X-40.5:289.5 Y105:105 S7.5                       ; Define leadscrew locations (with fake Y coordinates)
+M671 X-38.5:291.5 Y105:105 S7.5                       ; Define leadscrew locations (with fake Y coordinates)
 
 ; Heaters
 M308 S0 P"temp0" Y"thermistor" A"Bed" T100000 B4092   ; configure sensor 0 as thermistor on pin temp0
