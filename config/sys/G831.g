@@ -10,7 +10,7 @@
 ; short, linear segments.
 ;
 if sensors.analog[2].lastReading < 25       ;       temp < 25°C
-    G31 P500 X23 Y5 Z{ 0.65 + 0.000 } H2 S20 C0.001685
+    G31 P500 X23 Y5 Z{ 0.65 + 0.000000 } H2 S20 C0.001685
 elif sensors.analog[2].lastReading < 30     ; 25 <= temp < 30
     G31 P500 X23 Y5 Z{ 0.65 + 0.008425 } H2 S25 C0.007815 
 elif sensors.analog[2].lastReading < 35     ; 30 <= temp < 35
@@ -26,6 +26,6 @@ elif sensors.analog[2].lastReading < 55     ; 50 <= temp < 55
 elif sensors.analog[2].lastReading < 60     ; 55 <= temp < 60
     G31 P500 X23 Y5 Z{ 0.65 + 0.702625 } H2 S55 C0.044595
 elif sensors.analog[2].lastReading < 65     ; 60 <= temp < 65
-    G31 P500 X23 Y5 Z{ 0.65 + 0.925600 } H2 S60 0.050725
+    G31 P500 X23 Y5 Z{ 0.65 + 0.925600 } H2 S60 C0.050725
 else                                        ; 65 <= temp
     G31 P500 X23 Y5 Z{ 0.65 + 1.179225 } H2 S65 C0.056855
