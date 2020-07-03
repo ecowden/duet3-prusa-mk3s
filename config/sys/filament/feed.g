@@ -12,4 +12,5 @@ G1 E-1 F1800                             ; retract 1mm of filament at 1800mm/min
 M400                                     ; wait for completion
 M292                                     ; hide the message
 G10 S0                                   ; turn off heater
-; M84                                      ; turn off extruder stepper
+
+M84 E                                    ; turn off extruder stepper
