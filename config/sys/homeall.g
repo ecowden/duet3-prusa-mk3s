@@ -16,7 +16,7 @@ G1 H1 X-260 Y-221.5 F3000   ; move quickly to X axis endstop and stop there (onl
 
 ; Move X,Y to 0,0 for Z homing
 G90                 ; absolute positioning
-G1 X0 Y0 F15000
+G1 X0 Y0 F99999
 
 ; Z Axis
 G831                ; adjust PINDA temp compensation for current temperature

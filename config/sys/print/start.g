@@ -11,7 +11,7 @@ M98 P"/sys/print/prepare-bed.g"  ; perform bed leveling, mesh, etc.
 
 ; prime nozzle
 G81                              ; Go home ASAP
-G1 X0 Y-3.0 F15000.0             ; go outside print area
+G1 X0 Y-3.0 F99999.0             ; go outside print area
 G1 Z0.15                         ; lower extruder
 G92 E0.0
 G1 X60.0 E9.0 F1000.0            ; intro line
