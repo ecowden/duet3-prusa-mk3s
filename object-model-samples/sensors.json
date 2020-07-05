@@ -1,0 +1,71 @@
+{
+    "analog": [
+        {
+            "lastReading": 24.6,
+            "name": "Bed",
+            "type": "thermistor"
+        },
+        {
+            "lastReading": 21.9,
+            "name": "Hotend",
+            "type": "rtdmax31865"
+        },
+        {
+            "lastReading": 24.9,
+            "name": "PINDA",
+            "type": "thermistor"
+        },
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        {
+            "lastReading": 32.4,
+            "name": "MCU",
+            "type": "mcutemp"
+        }
+    ],
+    "endstops": [
+        {
+            "triggered": false,
+            "type": "motorStallAny"
+        },
+        {
+            "triggered": false,
+            "type": "motorStallAny"
+        },
+        {
+            "triggered": false,
+            "type": "zProbeAsEndstop"
+        }
+    ],
+    "filamentMonitors": [],
+    "gpIn": [],
+    "probes": [
+        {
+            "calibrationTemperature": 25.0,
+            "deployedByUser": false,
+            "disablesHeaters": false,
+            "diveHeight": 1.0,
+            "maxProbeCount": 20,
+            "offsets": [
+                23.0,
+                5.0
+            ],
+            "recoveryTime": 0,
+            "speed": 6.0,
+            "temperatureCoefficient": 0.008,
+            "threshold": 500,
+            "tolerance": 0.003,
+            "travelSpeed": 1666.7,
+            "triggerHeight": 0.658,
+            "type": 5,
+            "value": [
+                0
+            ]
+        }
+    ]
+}
