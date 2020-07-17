@@ -6,7 +6,7 @@
 ; General preferences
 G90                                                   ; send absolute coordinates...
 M83                                                   ; ...but relative extruder moves
-M550 P"Duet3"                                         ; set printer name
+M550 P"MK3D"                                          ; set printer name
 
 ; Drives
 M569 P0.0 S0 D3                                       ; X Moons HA6 - 0.0 goes backwards
@@ -22,8 +22,9 @@ M84 S30                                               ; Set idle timeout
 
 ; Speeds
 M203 X24000.00 Y24000.00 Z1440.00 E7200.00             ; set maximum speeds (mm/min)
-M201 X4000.00  Y4000.00  Z1000.00 E5000.00             ; set accelerations (mm/s^2)
-M566 X480.00   Y480.00   Z24.00   E3600.00             ; set maximum jerk (instantaneous speed changes) (mm/min)
+M201 X2500.00  Y2500.00  Z1000.00 E5000.00             ; set accelerations (mm/s^2)
+M566 X500.00   Y500.00   Z24.00   E3600.00             ; set maximum jerk (instantaneous speed changes) (mm/min)
+M204 P500 T2500                                        ; use 500mm/s² acceleration for print moves and 2500mm/s² for travel moves
 
 ; From cheeseandham on Railcore Discord, June 20, 2020 (for reference)
 ; M201 X4000 Y4000 Z100 E1500       ; Accelerations (mm/s^2)
@@ -35,8 +36,8 @@ M566 X480.00   Y480.00   Z24.00   E3600.00             ; set maximum jerk (insta
 ; and tune thigh (H) to avoid shifting into fullstep mode
 M569 P0.0 V30   H5                                    ; X  - Set tpwmthrs so StealthChop runs up to 125mm/sec
 M569 P0.1 V30   H5                                    ; Y  - Set tpwmthrs so StealthChop runs up to 125mm/sec
-M569 P0.2 V50   H5                                    ; ZL - Set tpwmthrs so StealthChop runs up to 12.5mm/sec
-M569 P0.3 V50   H5                                    ; zR - Set tpwmthrs so StealthChop runs up to 12.5mm/sec
+M569 P0.2 V75   H5                                    ; ZL - Set tpwmthrs so StealthChop runs up to 25mm/sec
+M569 P0.3 V75   H5                                    ; zR - Set tpwmthrs so StealthChop runs up to 25mm/sec
 M569 P0.4 V25   H5                                    ; E  - Set tpwmthrs so StealthChop runs up to 36.1mm/sec
 
 ; Axis Limits
@@ -72,7 +73,7 @@ M950 H0 C"out0" T0                                    ; create bed heater output
 M307 H0 B1 S1.00 A155.3 C497.5 D9.2 V24.0             ; enable bang bang mode for the bed heater and tune, PWM causes noise with Z steppers
 M140 H0                                               ; map heated bed to heater 0
 M143 H0 S125                                          ; set temperature limit for heater 0 to 125C
-M308 S1 P"0.spi.cs0" Y"rtd-max31865" A"Hotend"        ; configure sensor 1 as PT100 on RTD1
+M308 S1 P"0.spi.cs0" Y"rtd-max31865" A"Hotend" F60    ; configure sensor 1 as PT100 on RTD1 rejecting local 60Hz mains frequency
 M950 H1 C"out1" T1                                    ; create nozzle heater output on out1 and map it to sensor 1
 ; M307 H1 B0 S1.00 A830.5 C217.5 D3.5 V24.4           ; enable PID mode for heater and tune (no print fan)
 M307 H1 B0 S1.00 A314.3 C87.8 D2.3 V24.4              ; enable PID mode for heater and tune  (100% print fan)
@@ -99,4 +100,4 @@ M290 R0 S0.00                                         ; Set babystepping at an a
 
 ; Miscellaneous
 M308 S10 P"mcu-temp" Y"mcu-temp" A"MCU"               ; Set MCU temp on Sensor 10
-M501                                                  ; load saved parameters from non-volatile memory
+; M501                                                  ; load saved parameters from non-volatile memory
