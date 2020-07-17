@@ -59,7 +59,7 @@ M557 X32:223 Y35:184 P3
 G831                                                  ; set Z probe trigger height with PINDA temp compensation
 
 ; Leadscrew locations
-M671 X-38.5:291.5 Y105:105 S7.5                       ; Define leadscrew locations (with fake Y coordinates)
+M671 X-41.5:289.5 Y105:105 S7.5                       ; Define leadscrew locations (with fake Y coordinates)
 
 ; Heaters
 M308 S0 P"temp0" Y"thermistor" A"Bed" T100000 B4092   ; configure sensor 0 as thermistor on pin temp0
