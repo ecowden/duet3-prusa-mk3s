@@ -58,12 +58,6 @@ M557 X32:223 Y35:184 P3
 ; Ends @  :211   :211 (so offsets applied, coordinates requested & in heightmap are where PINDA measured)
 G831                                                  ; set Z probe trigger height with PINDA temp compensation
 
-; Stall Detection & Sensorless Homing
-; Adjust S to set threshold, higher is less sensitive
-M915 X S-1  F0 H400 R1                                ; X Axis stall detection
-M915 Y S-1  F0 H400 R1                                ; Y Axis stall detection
-M915 Z S20  F1 H200 R1                                ; Z Axis stall detection
-
 ; Leadscrew locations
 M671 X-38.5:291.5 Y105:105 S7.5                       ; Define leadscrew locations (with fake Y coordinates)
 
