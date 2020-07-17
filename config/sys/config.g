@@ -24,7 +24,7 @@ M84 S30                                               ; Set idle timeout
 M203 X24000.00 Y24000.00 Z1440.00 E7200.00             ; set maximum speeds (mm/min)
 M201 X2500.00  Y2500.00  Z1000.00 E5000.00             ; set accelerations (mm/s^2)
 M566 X500.00   Y500.00   Z24.00   E3600.00             ; set maximum jerk (instantaneous speed changes) (mm/min)
-M204 P500 T2500                                        ; use 500mm/s² acceleration for print moves and 2500mm/s² for travel moves
+M204 P1000 T2500                                       ; use 1000mm/s² acceleration for print moves and 2500mm/s² for travel moves
 
 ; From cheeseandham on Railcore Discord, June 20, 2020 (for reference)
 ; M201 X4000 Y4000 Z100 E1500       ; Accelerations (mm/s^2)
