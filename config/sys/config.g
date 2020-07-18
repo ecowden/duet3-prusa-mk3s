@@ -15,15 +15,15 @@ M569 P0.2 S0 D3                                       ; Z Left  Stock MK3S - 0.2
 M569 P0.3 S0 D3                                       ; Z Right Stock MK3S - 0.3 goes backwards
 M569 P0.4 S1 D3                                       ; E LDO "Slim Power" - 0.4 goes forwards
 M584 X0.0 Y0.1 Z0.2:0.3 E0.4                          ; set drive mapping
-M350 X32 Y32 Z32 E32 I1                               ; configure microstepping with interpolation
-M92 X400.00 Y400.00 Z800.00 E1660.00                  ; set steps per mm
+M350 X32 Y32 Z64 E32 I1                               ; configure microstepping with interpolation
+M92 X400.00 Y400.00 Z1600.00 E1660.00                 ; set steps per mm
 M906 X1600 Y1600 Z800 E1000 I30                       ; set motor currents (mA) and motor idle factor in per cent
 M84 S30                                               ; Set idle timeout
 
 ; Speeds
-M203 X24000.00 Y24000.00 Z1440.00 E7200.00             ; set maximum speeds (mm/min)
-M201 X2500.00  Y2500.00  Z1000.00 E5000.00             ; set accelerations (mm/s^2)
-M566 X500.00   Y500.00   Z24.00   E3600.00             ; set maximum jerk (instantaneous speed changes) (mm/min)
+M203 X24000.00 Y24000.00 Z1440.00 E3600.00             ; set maximum speeds (mm/min)
+M201 X2500.00  Y2500.00  Z480.00  E1500.00             ; set accelerations (mm/s^2)
+M566 X500.00   Y500.00   Z24.00   E1500.00             ; set maximum jerk (instantaneous speed changes) (mm/min)
 M204 P1000 T2500                                       ; use 1000mm/s² acceleration for print moves and 2500mm/s² for travel moves
 
 ; From cheeseandham on Railcore Discord, June 20, 2020 (for reference)
@@ -38,7 +38,7 @@ M569 P0.0 V30   H5                                    ; X  - Set tpwmthrs so Ste
 M569 P0.1 V30   H5                                    ; Y  - Set tpwmthrs so StealthChop runs up to 125mm/sec
 M569 P0.2 V75   H5                                    ; ZL - Set tpwmthrs so StealthChop runs up to 25mm/sec
 M569 P0.3 V75   H5                                    ; zR - Set tpwmthrs so StealthChop runs up to 25mm/sec
-M569 P0.4 V25   H5                                    ; E  - Set tpwmthrs so StealthChop runs up to 36.1mm/sec
+M569 P0.4 V125  H5                                    ; E  - Set tpwmthrs so StealthChop runs up to 36.1mm/sec
 
 ; Axis Limits
 M208 X-2  Y-8.0  Z0.15  S1                            ; set axis minima
@@ -90,7 +90,7 @@ T0                                                    ; Select the one and only 
 M593 F{ 60 / 1.8 }                                    ; cancel ringing at 33.3333Hz
 
 ; Babystepping
-M290 R0 S0.00                                         ; Set babystepping at an absolute value
+M290 R0 S0.05                                         ; Set babystepping at an absolute value
 
 ; Miscellaneous
 M308 S10 P"mcu-temp" Y"mcu-temp" A"MCU"               ; Set MCU temp on Sensor 10

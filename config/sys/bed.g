@@ -21,4 +21,4 @@ G30 P4 X32       Y109.5    Z-99999
 G831
 G30 P5 X32       Y35       Z-99999  S2  ; ...after last point, tram bed  
 
-G28 Z                                   ; re-home Z
+; G28 Z                                   ; re-home Z

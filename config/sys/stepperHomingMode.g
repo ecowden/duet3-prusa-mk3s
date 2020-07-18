@@ -15,4 +15,4 @@ M913 Y50                    ; reduce Y motor current to 50% to prevent belts sli
 ;
 M915 X S-1  F0 H400 R1      ; X Axis stall detection
 M915 Y S-1  F0 H400 R1      ; Y Axis stall detection
-M915 Z S10  F1 H200 R2      ; Z Axis stall detection
+M915 Z S20  F1 H200 R2      ; Z Axis stall detection
